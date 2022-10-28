@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <input type="file" id="input" multiple>
+  <script>
+    let globalObj = undefined;
+    const readJSONText = file => new Promise((resolve) => {
+        const reader = new FileReader();
+
+        reader.onload = (event) => {
+            resolve({fileName: file.name.substr(0, file.name.lastIndexOf(".")), content: JSON.parse(new TextDecoder().decode(event.target.result))})
+        }
+        reader.readAsArrayBuffer(file)
+    });
+
+    const inputElement = document.getElementById("input");
+    inputElement.addEventListener("change", function () {
+      const fileList = this.files;
+        Promise
+        .all(
+            Array
+            .from(fileList)
+            .map(file => readJSONText(file)))
+        .then(obj => {
+            globalObj = obj;
+            console.table(globalObj);
+        });
+    }, false);
+  </script>
+</body>
+
+</html>
