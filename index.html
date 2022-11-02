@@ -33,6 +33,12 @@
             console.table(globalObj);
         });
     }, false);
+    
+    function diff(oldIndex, newIndex) {
+      const oldArray = globalObj[oldIndex].content; // check devtools' console for new array index
+      const newArray = globalObj[newIndex].content; // check devtools' console for new array index
+      console.table(oldArray.filter(oldElement => !newArray.map(newElement => newElement["id"]).includes(oldElement["id"])));
+    }
   </script>
 </body>
 
