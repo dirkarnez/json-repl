@@ -39,6 +39,10 @@
       const newArray = globalObj[newIndex].content; // check devtools' console for new array index
       console.table(oldArray.filter(oldElement => !newArray.map(newElement => newElement["id"]).includes(oldElement["id"])));
     }
+    
+    function removeDuplicate(getKey) {
+      console.log(globalObj.filter((a, index) => arr.map(b => getKey(b)).indexOf(getKey(a)) === index));
+    }
   </script>
 </body>
 
