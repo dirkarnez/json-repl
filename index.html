@@ -40,8 +40,24 @@
       console.table(oldArray.filter(oldElement => !newArray.map(newElement => newElement["id"]).includes(oldElement["id"])));
     }
     
+  /*  
     function removeDuplicate(getKey) {
       console.log(globalObj.filter((a, index) => arr.map(b => getKey(b)).indexOf(getKey(a)) === index));
+    }*/
+    function removeDuplicates() {
+      // Create a Set to store unique IDs
+      const uniqueIds = new Set();
+    
+      // Filter the array to remove duplicates
+      JSON.stringify(globalObj.reduce((pp, cc) => ([...pp, ...cc.content]), []).filter(obj => {
+        // If the ID is not in the Set, add it and keep the object
+        if (!uniqueIds.has(obj.id)) {
+          uniqueIds.add(obj.id);
+          return true;
+        }
+        // Otherwise, discard the object
+        return false;
+      }))
     }
   </script>
 </body>
