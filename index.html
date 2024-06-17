@@ -49,7 +49,7 @@
       const uniqueIds = new Set();
     
       // Filter the array to remove duplicates
-      JSON.stringify(globalObj.reduce((pp, cc) => ([...pp, ...cc.content]), []).filter(obj => {
+      console.log(JSON.stringify(globalObj.reduce((pp, cc) => ([...pp, ...cc.content]), []).filter(obj => {
         // If the ID is not in the Set, add it and keep the object
         if (!uniqueIds.has(obj.id)) {
           uniqueIds.add(obj.id);
@@ -57,7 +57,7 @@
         }
         // Otherwise, discard the object
         return false;
-      }))
+      })))
     }
   </script>
 </body>
