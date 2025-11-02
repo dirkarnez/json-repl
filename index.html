@@ -63,8 +63,15 @@
     function formatJSONString(value) {
       return JSON.stringify(value, null, 2);
     }
+
+    function mergeArrays(array, idGetter) {
+      array.map(a => [idGetter(a), ({...a})])
+    }
+
+    
   </script>
 </body>
 
 </html>
+
 
